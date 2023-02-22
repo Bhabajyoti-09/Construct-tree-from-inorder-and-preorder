@@ -1,0 +1,24 @@
+class Solution{
+    public:
+    
+   
+    Node* buildTree(int in[],int pre[], int n)
+    {
+       if(n==0)
+       {
+           return NULL;
+       }
+       Node*root=new Node(pre[0]);
+       int index=0;
+       for(int i=0;i<n;i++){
+           if(in[i]==root->data)
+           {
+               index=i;
+               break;
+           }
+       }
+       root->left =buildTree(in,pre+1,index);
+       root->right=buildTree(in+index+1,pre+index+1,n-index-1);
+       return root;
+    }
+};
